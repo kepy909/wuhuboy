@@ -18,6 +18,7 @@ from django.contrib import admin
 from wuhuboy.apps.index import views
 
 urlpatterns = [
-    url(r'^', views.index, name="index"),
+    url(r'^$', views.index, name="index"),
+    url(r'^baidu/$', views.get_baidu, name="baidu"),
     url(r'^admin/', admin.site.urls),
 ]
