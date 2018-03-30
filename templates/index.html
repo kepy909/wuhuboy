@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="renderer" content="webkit">
         <meta charset="UTF-8">
-        <title>百度文库 下载页</title>
+        <title>芜湖小青年</title>
         <link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
         <script src="hhttp://cdn.amazeui.org/amazeui/2.7.2/js/amazeui.min.js"></script>
         <!--<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>-->
@@ -22,13 +22,13 @@
             <div>
                 <div align="center">
                     <button id="tips" type="button" style="height:50px" class="am-alert am-alert-warning am-u-sm-12 am-radius">百度文库
-                下载工具
+                下载工具-芜湖小青年
             </button>
                 </div>
                 <div>
                     <div style="margin-left:  3%;margin-right: 3%">
                         <pre style="font-size:16px">
-                            使用方法:输入要下载的文档链接，点击提交，显示提交成功后耐心等待就好,别忘了输入账号密码!;如果页面显示异常，请切换浏览器为极速模式!<br/>提交文档链接形式类似：https://wenku.baidu.com/view/8dd1fb45763231126edb1168.html?from=search
+                            使用方法:输入要下载的文档链接，点击提交，显示提交成功后耐心等待就好!;如果页面显示异常，请切换浏览器为极速模式!<br/>提交文档链接形式类似：https://wenku.baidu.com/view/8dd1fb45763231126edb1168.html?from=search
 
                         </pre>
                     </div>
@@ -46,23 +46,6 @@
                             <input id="downlink" type="hidden">
                         </div>
                     </div>
-                    <div class="am-g">
-                        <div class="am-u-sm-3">
-                            <p>账号：</p>
-                        </div>
-                        <div class="am-u-sm-9">
-                            <input id="baiduacc" type="text" class="am-form-field" name="usrid">
-                        </div>
-                    </div>
-                    <div class="am-g">
-                        <div class="am-u-sm-3">
-                            <p>密码：
-                    </p>
-                        </div>
-                        <div class="am-u-sm-9">
-                            <input id="baidupwd" type="password" class="am-form-field" name="usrpwd">
-                        </div>
-                    </div>
                     <br/>
                     <div style="width:400px;margin-left:0px">
                         <button id="upbtn" class="am-btn am-btn-success">提交</button>
@@ -76,10 +59,6 @@
     var flagid = 0;
 
     function loadusrinfo() {
-        var usracc = $.cookie('usrname');
-        var usrpsw = $.cookie('usrpwd');
-        $('#baiduacc').val(usracc);
-        $('#baidupwd').val(usrpsw);
     }
 
     $('#savecoo').click(function () {
@@ -90,8 +69,6 @@
     });
 
     $('#upbtn').click(function () {
-        var usracc = $('#baiduacc').val();
-        var usrpwd = $('#baidupwd').val();
         var docid = $('#docid').val();
         var re = new RegExp(/[0-9a-z]{20,50}/);
         docid = docid.match(re);
@@ -100,20 +77,10 @@
             return;
         }
         docid = docid.toString();
-        if (usracc == '') {
-            $('#tips').html("用户名空");
-            return;
-        }
-        else if (usrpwd == '') {
-            $('#tips').html("密码空");
-            return;
-        }
 
         $("#upbtn").attr("disabled", true);
         $.post("/baidu/",
             {
-                usrname: usracc,
-                usrpass: usrpwd,
                 docinfo: docid,
                 taskid: "up_down_doc",
             },
